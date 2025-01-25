@@ -1,0 +1,28 @@
+### 
+GET http://localhost:3000/movies
+###
+GET http://localhost:3000/movies/3
+###
+GET http://localhost:3000/movies/7
+###
+
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "Rayuela",
+  "author": "Julio Cortazar",
+  "rating": 1
+}
+
+###
+PUT http://localhost:3000/movies/5
+Content-Type: application/json
+
+{
+  "title": "Rayuela",
+  "author": "Julio Cortazar",
+  "rating": 2
+}
+###
+DELETE http://localhost:3000/movies/4
