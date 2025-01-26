@@ -1,0 +1,21 @@
+services:
+  postgresdb:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=booksDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgres
+  app:
+    depends_on:
+      - postgresdb
+    build: .
+    env_file: ./.env
+    ports:
+      - "3000:3000"
+
+volumes:
+  db:
