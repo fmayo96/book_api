@@ -6,4 +6,5 @@ RUN npm install
 
 COPY . . 
 
-CMD ["npm",  "run",  "dev"]
+RUN npm i -g typescript
+CMD ["tsc", "node ./build/db.js", "&&", "npm",  "run",  "dev"]

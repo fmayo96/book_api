@@ -13,5 +13,5 @@ const port = (_a = process_1.env.PORT) !== null && _a !== void 0 ? _a : 3000;
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.disable('x-powered-by');
-app.use('/movies', books_1.booksRouter);
+app.use('/books', books_1.booksRouter);
 app.listen(port, () => console.log(`Server listening on port ${port}`));

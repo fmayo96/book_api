@@ -2,15 +2,6 @@ import express from 'express'
 import cors from 'cors'
 import { env } from 'process'
 import { booksRouter } from './routes/books'
-import { createDB } from './db'
-import { Sequelize } from 'sequelize'
-import { Book } from './models/book'
-import dotenv from 'dotenv'
-dotenv.config()
-
-//createDB()
-
-Book.sync().then(() => console.log("Table created"))
 
 const app = express()
 const port = env.PORT ?? 3000

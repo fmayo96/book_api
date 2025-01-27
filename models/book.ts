@@ -1,30 +1,33 @@
-import { Sequelize, DataTypes } from "sequelize"
-import { env } from "process"
-import { connString } from "../db"
+import { Sequelize, DataTypes } from 'sequelize'
+import { env } from 'process'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const sequelize = new Sequelize(connString)
+const sequelize = new Sequelize({
+  dialect: 'postgres',
+  host: env.DBHOST,
+  username: env.DBUSERNAME,
+  password: env.DBPASSWORD,
+  port: parseInt(env.DBPORT!),
+  database: env.DBNAME
+})
 
-export const Book = sequelize.define(
-  'Book',
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
-    },
-    title: {
-      type: DataTypes.STRING
-    },
-    author: {
-      type: DataTypes.STRING
-    },
-    rating: {
-      type: DataTypes.INTEGER
-    }
+export const Book = sequelize.define('Book', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  title: {
+    type: DataTypes.STRING
+  },
+  author: {
+    type: DataTypes.STRING
+  },
+  rating: {
+    type: DataTypes.INTEGER
   }
-)
+})
 
 /*
 export const DB = [
@@ -34,4 +37,3 @@ export const DB = [
   new Book(4, "El extranjero", "Albert Camus", 5),
 ]
   */
-
