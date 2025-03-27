@@ -2,6 +2,9 @@ import express from 'express'
 import cors from 'cors'
 import { env } from 'process'
 import { booksRouter } from './routes/books'
+import { initDb } from './db'
+
+initDb()
 
 const app = express()
 const port = env.PORT ?? 3000

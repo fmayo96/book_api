@@ -12,13 +12,21 @@ const createDB = async () => {
     port: parseInt(env.DBPORT!)
   })
   await client.connect()
-  await client.query(`CREATE DATABASE BooksDB;`)
+  const res = await client.query(
+    `SELECT datname FROM pg_catalog.pg_database WHERE datname = '${env.DBNAME}'`
+  )
+
+  if (res.rowCount === 0) {
+    console.log(`${env.DBNAME} database not found, creating it.`)
+    await client.query(`CREATE DATABASE "${env.DBNAME}";`)
+    console.log(`created database ${env.DBNAME}`)
+  } else {
+    console.log(`${env.DBNAME} database exists.`)
+  }
   await client.end()
 }
 
-const init = async () => {
+export const initDb = async () => {
   await createDB()
   Book.sync().then(() => console.log('Books table created'))
 }
-
-init()

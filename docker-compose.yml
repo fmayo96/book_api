@@ -4,16 +4,21 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=booksDB
+      - POSTGRES_DB=booksdb
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - db:/var/lib/postgres
   app:
     depends_on:
       - postgresdb
     build: .
-    env_file: ./.env
+    environment:
+      - DBUSERNAME="postgres"
+      - DBPASSWORD="postgres"
+      - DBHOST="postgresdb"
+      - DBNAME="booksdb"
+      - DBPORT="5432"
     ports:
       - "3000:3000"
 

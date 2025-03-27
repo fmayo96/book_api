@@ -8,6 +8,8 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const process_1 = require("process");
 const books_1 = require("./routes/books");
+const db_1 = require("./db");
+(0, db_1.initDb)();
 const app = (0, express_1.default)();
 const port = (_a = process_1.env.PORT) !== null && _a !== void 0 ? _a : 3000;
 app.use(express_1.default.json());

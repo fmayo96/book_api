@@ -7,4 +7,4 @@ RUN npm install
 COPY . . 
 
 RUN npm i -g typescript
-CMD ["tsc", "node ./build/db.js", "&&", "npm",  "run",  "dev"] %fix this
+CMD ["npm",  "run",  "dev"]
